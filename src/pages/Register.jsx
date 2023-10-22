@@ -19,7 +19,7 @@ const Register = () => {
     const email = e.target[1].value;
     const password = e.target[2].value;
     console.log("file",e.target[3].files[0])
-    let file = e.target[3].files[0];
+    const file = e.target[3].files[0];
     // https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}
 
     try {
@@ -75,7 +75,7 @@ const Register = () => {
           <input required type="text" placeholder="display name" />
           <input required type="email" placeholder="email" />
           <input required type="password" placeholder="password" />
-          <input style={{ display: "none" }} type="file" id="file" />
+          <input required style={{ display: "none" }} type="file" id="file" />
           <label htmlFor="file">
             <img src={Add} alt="" />
             <span>Add an avatar</span>
