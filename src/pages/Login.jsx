@@ -13,7 +13,8 @@ const Login = () => {
     const password = e.target[1].value;
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const data  = await signInWithEmailAndPassword(auth, email, password);
+      console.log("login data: ",data);
       navigate("/")
     } catch (err) {
       setErr(true);
@@ -28,7 +29,7 @@ const Login = () => {
           <input type="email" placeholder="email" />
           <input type="password" placeholder="password" />
           <button>Sign in</button>
-          {err && <span>Something went wrong</span>}
+          {err && <span className="errorlogin">Enter Correct Details</span>}
         </form>
         <p>You don't have an account? <Link to="/register">Register</Link></p>
       </div>
