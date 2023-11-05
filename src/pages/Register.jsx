@@ -18,9 +18,8 @@ const Register = () => {
     const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
-    console.log("file",e.target[3].files[0])
+    console.log("Form Data : ",e.target)
     const file = e.target[3].files[0];
-    // https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}
 
     try {
       //Create user
@@ -45,12 +44,10 @@ const Register = () => {
               email,
               photoURL: downloadURL,
             });
-
             //create empty user chats on firestore
             await setDoc(doc(db, "userChats", res.user.uid), {});
             navigate("/");
-          } 
-          
+          }           
           catch (err) {
             console.log(err);
             setErr(true);
@@ -72,23 +69,22 @@ const Register = () => {
         <span className="logo">Real Chat</span>
         <span className="title">Register</span>
         <form onSubmit={handleSubmit}>
-          <input required type="text" placeholder="display name" />
-          <input required type="email" placeholder="email" />
-          <input required type="password" placeholder="password" />
-          <input required style={{ display: "none" }} type="file" id="file" />
+          <input required type="text" placeholder="display name" onChange={() => setErr(false)}/>
+          <input required type="email" placeholder="email" onChange={() => setErr(false)} />
+          <input required type="password" placeholder="password" onChange={() => setErr(false)}/>
+          <input required style={{ display: "none" }} type="file" id="file" onChange={() => setErr(false)} />
           <label htmlFor="file">
             <img src={Add} alt="" />
             <span>Add an avatar</span>
           </label>
           <button disabled={loading}>Sign up</button>
-          {err && <span style={{color:"red", margin:"-10px"}}>Error while signup</span>}
+          {err && <span style={{color:"red", marginTop:"-10px"}}>Error while signup</span>}
         </form>
         <p>
           You do have an account? <Link to="/register">Login</Link>
         </p>
       </div>
-    )
-    }
+    )}
     </div>
   );
 };
