@@ -12,7 +12,7 @@ const Navbar = () => {
       <div className="user">
         <img src={currentUser.photoURL} alt="" />
         <span>{currentUser.displayName}</span>
-        <button onClick={()=>signOut(auth)}>logout</button>
+        <button onClick={()=>signOut(auth)} className='logout-btn'>LogOut</button>
       </div>
     </div>
   )
